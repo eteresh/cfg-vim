@@ -23,7 +23,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-nnoremap <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <Leader>l :<C-u>nohlsearch<CR><C-l>
 " ==========================================================================
 
 " Enable syntax highlighting
@@ -117,3 +117,8 @@ packadd! vim-visual-star-search
 " ==========================================================================
 " open fuzzy file search prompt on CTRL-P
 nnoremap <C-p> :<C-u>FZF<CR>
+nnoremap <Leader>b :<C-u>Buffers<CR>
+
+nnoremap <Leader>e :Explore<CR>
+
+let mapleader="-"
