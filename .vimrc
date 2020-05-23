@@ -94,6 +94,15 @@ call minpac#add('junegunn/fzf', {'type': 'opt', 'do': {-> system('./install --bi
 call minpac#add('junegunn/fzf.vim', {'type': 'opt'})
 
 call minpac#add('vim-jp/syntax-vim-ex', {'type': 'opt'})
+
+call minpac#add('jmcantrell/vim-virtualenv', {'type': 'opt'})
+
+call minpac#add('dense-analysis/ale', {'type': 'opt'})
+
+call minpac#add('tpope/vim-unimpaired', {'type': 'opt'})
+call minpac#add('tpope/vim-projectionist', {'type': 'opt'})
+call minpac#add('tpope/vim-commentary', {'type': 'opt'})
+call minpac#add('tpope/vim-speeddating', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
@@ -117,6 +126,16 @@ packadd! fzf
 packadd! fzf.vim
 
 packadd! syntax-vim-ex
+
+
+packadd! vim-virtualenv
+
+packadd! ale
+
+packadd! vim-unimpaired
+packadd! vim-projectionist
+packadd! vim-commentary
+packadd! vim-speeddating
 " ==========================================================================
 
 
@@ -127,3 +146,5 @@ nnoremap <C-p> :<C-u>FZF<CR>
 nnoremap <Leader>b :<C-u>Buffers<CR>
 nnoremap <Leader>e :Explore<CR>
 
+" map go to alternate file
+nnoremap <Leader>a :A<CR>
