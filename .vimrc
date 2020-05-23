@@ -112,6 +112,7 @@ call minpac#add('christoomey/vim-titlecase', {'type': 'opt'})
 call minpac#add('christoomey/vim-sort-motion', {'type': 'opt'})
 " call minpac#add('jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt'})
 
+call minpac#add('lyokha/vim-xkbswitch', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
@@ -151,8 +152,12 @@ packadd! ReplaceWithRegister
 packadd! vim-system-copy
 packadd! vim-titlecase
 packadd! vim-sort-motion
+
+packadd! vim-xkbswitch
 " ==========================================================================
 
+let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
+let g:XkbSwitchEnabled=1
 
 " Mappings
 " ==========================================================================
