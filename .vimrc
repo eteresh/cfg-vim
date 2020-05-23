@@ -96,6 +96,9 @@ packadd! vim-airline
 " Add git plugins
 packadd! vim-fugitive
 packadd! vim-gitgutter
+
+" Add builtin plugin matchit to match HTML tags
+packadd! matchit
 " ==========================================================================
 
 " Add plugins
