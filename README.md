@@ -5,6 +5,38 @@
 
 # Cheatsheet for cloning from github and for syncing updates from github
 
+## Use all settings and plugins as is
+1. Run in shell:
+```shell
+git clone --bare https://github.com/eteresh/cfg-vim.git $HOME/.cfg/vim
+git --git-dir=$HOME/.cfg/vim --work-tree=$HOME checkout master
+git --git-dir=$HOME/.cfg/vim --work-tree=$HOME config --local status.showUntrackedFiles no
+
+mkdir -p $HOME/.vim/pack/minpac/opt
+cd $HOME/.vim/pack/minpac/opt
+git clone https://github.com/k-takata/minpac.git
+cd $HOME
+
+echo 'export PATH=$PATH:$HOME/.vim/pack/minpac/opt/fzf/bin' >> $HOME/.bashrc
+mkdir -p $HOME/.config/fish/config.fish
+echo 'set PATH $PATH $HOME/.vim/pack/minpac/opt/fzf/bin' $HOME/.config/fish/config.fish
+```
+
+2. You need to add path to your system PATH-variable.
+- If you use bash, you can add to your `$HOME/.bashrc`:
+```shell
+export PATH=$PATH:$HOME/.vim/pack/minpac/opt/fzf/bin
+```
+- If you use fish, you can add to your `$HOME/.config/fish/config.fish`:
+```shell
+set PATH $PATH $HOME/.vim/pack/minpac/opt/fzf/bin
+```
+3. Run vim, ignore all warnings (because no plugins downloaded), and execute:
+```vim
+:PackUpdate
+```
+
+
 ## Clone vim-config repo
 ```shell
 git clone --bare https://github.com/eteresh/cfg-vim.git $HOME/.cfg/vim

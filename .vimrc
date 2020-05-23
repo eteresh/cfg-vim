@@ -87,6 +87,9 @@ call minpac#add('vim-airline/vim-airline', {'type': 'opt'})
 call minpac#add('tpope/vim-fugitive', {'type': 'opt'})
 call minpac#add('airblade/vim-gitgutter', {'type': 'opt'})
 
+" Add plugins for fuzzy file search
+call minpac#add('junegunn/fzf', {'type': 'opt', 'do': {-> system('./install --bin')}})
+call minpac#add('junegunn/fzf.vim', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
@@ -99,13 +102,18 @@ packadd! vim-gitgutter
 
 " Add builtin plugin matchit to match HTML tags
 packadd! matchit
-" ==========================================================================
 
-" Add plugins
+" Add plugins for fuzzy file search
+packadd! fzf
+packadd! fzf.vim
 " ==========================================================================
 " Add builtin plugin matchit to match HTML tags
 packadd! matchit
 
 " Add plugin to search visually selected text in visual mode
 packadd! vim-visual-star-search
+
+" Mappings
 " ==========================================================================
+" open fuzzy file search prompt on CTRL-P
+nnoremap <C-p> :<C-u>FZF<CR>
