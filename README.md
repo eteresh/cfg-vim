@@ -1,5 +1,5 @@
-# Literature, casts
-- This repo keeps vim-config according to tutorial: https://www.atlassian.com/git/tutorials/dotfiles
+# Literature, casts on vim
+- This repo keeps vim-config according to the tutorial: https://www.atlassian.com/git/tutorials/dotfiles
 - Drew Neil "Practical vim"
 - Drew Neil "Modern vim"
 
@@ -60,4 +60,31 @@ git --git-dir=$HOME/.cfg/vim --work-tree=$HOME push origin master
 4. I strongly recommend you to add a readme with `git`-commands to clone your repo from github and to synchronize cloned repo with github. It will help you to keep up to date version of your vim-configuration on all machines you work.
 
 Congrats! After these simple steps you have a base repo with vim-configuration. Now you can customize vim, commit, push to github, pull from github on all your machines using standard git workflow.
+
+
+# Plugins
+## Add minpac plugin manager
+Run in shell:
+```shell
+mkdir -p $HOME/.vim/pack/minpac/opt
+cd $HOME/.vim/pack/minpac/opt
+git clone https://github.com/k-takata/minpac.git
+```
+
+Add to your .vimrc:
+```vim
+" Initialize minpac to load vim plugins
+" ==========================================================================
+packadd minpac
+call minpac#init()
+command! PackUpdate call minpac#update()
+command! PackStatus call minpac#status()
+command! PackClean call minpac#clean()
+" ==========================================================================
+
+" Plugins
+" ==========================================================================
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+" ==========================================================================
+```
 
