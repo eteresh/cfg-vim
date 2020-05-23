@@ -51,6 +51,15 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 set spelllang=en_us
 set spell
 
+" Set color scheme
+" ==========================================================================
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+set t_Co=256
+set background=dark
+colorscheme solarized8_flat
+" ==========================================================================
+
 
 " Initialize minpac to load vim plugins
 " ==========================================================================
@@ -68,6 +77,8 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " Add plugin to search visually selected text in visual mode
 call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
+
+call minpac#add('lifepillar/vim-solarized8', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
