@@ -113,6 +113,9 @@ call minpac#add('christoomey/vim-sort-motion', {'type': 'opt'})
 " call minpac#add('jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt'})
 
 call minpac#add('lyokha/vim-xkbswitch', {'type': 'opt'})
+
+" call minpac#add('michaeljsmith/vim-indent-object', {'type': 'opt'})
+call minpac#add('ycm-core/YouCompleteMe', {'type': 'opt', 'do': {-> system('python install.py --all')}})
 " ==========================================================================
 
 " Add plugins
@@ -154,6 +157,8 @@ packadd! vim-titlecase
 packadd! vim-sort-motion
 
 packadd! vim-xkbswitch
+
+packadd! YouCompleteMe
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
