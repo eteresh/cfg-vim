@@ -17,6 +17,8 @@ set wildmode=full
 " Save 200 last Ex commands in history
 set history=200
 
+let mapleader="-"
+
 " Search settings
 " ==========================================================================
 set ignorecase
@@ -90,10 +92,17 @@ call minpac#add('airblade/vim-gitgutter', {'type': 'opt'})
 " Add plugins for fuzzy file search
 call minpac#add('junegunn/fzf', {'type': 'opt', 'do': {-> system('./install --bin')}})
 call minpac#add('junegunn/fzf.vim', {'type': 'opt'})
+
+call minpac#add('vim-jp/syntax-vim-ex', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
 " ==========================================================================
+" Add builtin plugin matchit to match HTML tags
+packadd! matchit
+
+" Add plugin to search visually selected text in visual mode
+packadd! vim-visual-star-search
 packadd! vim-airline
 
 " Add git plugins
@@ -106,19 +115,15 @@ packadd! matchit
 " Add plugins for fuzzy file search
 packadd! fzf
 packadd! fzf.vim
-" ==========================================================================
-" Add builtin plugin matchit to match HTML tags
-packadd! matchit
 
-" Add plugin to search visually selected text in visual mode
-packadd! vim-visual-star-search
+packadd! syntax-vim-ex
+" ==========================================================================
+
 
 " Mappings
 " ==========================================================================
 " open fuzzy file search prompt on CTRL-P
 nnoremap <C-p> :<C-u>FZF<CR>
 nnoremap <Leader>b :<C-u>Buffers<CR>
-
 nnoremap <Leader>e :Explore<CR>
 
-let mapleader="-"
