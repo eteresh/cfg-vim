@@ -103,6 +103,15 @@ call minpac#add('tpope/vim-unimpaired', {'type': 'opt'})
 call minpac#add('tpope/vim-projectionist', {'type': 'opt'})
 call minpac#add('tpope/vim-commentary', {'type': 'opt'})
 call minpac#add('tpope/vim-speeddating', {'type': 'opt'})
+
+
+call minpac#add('jez/vim-superman', {'type': 'opt'})
+call minpac#add('vim-scripts/ReplaceWithRegister', {'type': 'opt'})
+call minpac#add('christoomey/vim-system-copy', {'type': 'opt'})
+call minpac#add('christoomey/vim-titlecase', {'type': 'opt'})
+call minpac#add('christoomey/vim-sort-motion', {'type': 'opt'})
+" call minpac#add('jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -136,6 +145,12 @@ packadd! vim-unimpaired
 packadd! vim-projectionist
 packadd! vim-commentary
 packadd! vim-speeddating
+
+packadd! vim-superman
+packadd! ReplaceWithRegister
+packadd! vim-system-copy
+packadd! vim-titlecase
+packadd! vim-sort-motion
 " ==========================================================================
 
 
