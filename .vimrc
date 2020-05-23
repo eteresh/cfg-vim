@@ -78,7 +78,24 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " Add plugin to search visually selected text in visual mode
 call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
 
+" Add colorscheme solarized8
 call minpac#add('lifepillar/vim-solarized8', {'type': 'opt'})
+
+call minpac#add('vim-airline/vim-airline', {'type': 'opt'})
+
+" Add git plugins
+call minpac#add('tpope/vim-fugitive', {'type': 'opt'})
+call minpac#add('airblade/vim-gitgutter', {'type': 'opt'})
+
+" ==========================================================================
+
+" Add plugins
+" ==========================================================================
+packadd! vim-airline
+
+" Add git plugins
+packadd! vim-fugitive
+packadd! vim-gitgutter
 " ==========================================================================
 
 " Add plugins
