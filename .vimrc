@@ -116,6 +116,9 @@ call minpac#add('lyokha/vim-xkbswitch', {'type': 'opt'})
 
 " call minpac#add('michaeljsmith/vim-indent-object', {'type': 'opt'})
 call minpac#add('ycm-core/YouCompleteMe', {'type': 'opt', 'do': {-> system('python install.py --all')}})
+call minpac#add('machakann/vim-sandwich', {'type': 'opt'})
+call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -159,6 +162,8 @@ packadd! vim-sort-motion
 packadd! vim-xkbswitch
 
 packadd! YouCompleteMe
+packadd! vim-sandwich
+packadd! vim-highlightedyank
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
@@ -173,3 +178,5 @@ nnoremap <Leader>e :Explore<CR>
 
 " map go to alternate file
 nnoremap <Leader>a :A<CR>
+
+let g:highlightedyank_highlight_duration = 400
