@@ -119,6 +119,8 @@ call minpac#add('ycm-core/YouCompleteMe', {'type': 'opt', 'do': {-> system('pyth
 call minpac#add('machakann/vim-sandwich', {'type': 'opt'})
 call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
 
+call minpac#add('jpalardy/vim-slime', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -164,6 +166,8 @@ packadd! vim-xkbswitch
 packadd! YouCompleteMe
 packadd! vim-sandwich
 packadd! vim-highlightedyank
+
+packadd! vim-slime
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
@@ -180,3 +184,4 @@ nnoremap <Leader>e :Explore<CR>
 nnoremap <Leader>a :A<CR>
 
 let g:highlightedyank_highlight_duration = 400
+let g:slime_target = "tmux"
