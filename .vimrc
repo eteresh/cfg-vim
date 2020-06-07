@@ -17,7 +17,7 @@ set wildmode=full
 " Save 200 last Ex commands in history
 set history=200
 
-let mapleader="-"
+let mapleader = " "
 
 " Search settings
 " ==========================================================================
@@ -52,6 +52,16 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " Enable spellchecking
 set spelllang=en_us
 set spell
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+set updatetime=50
+
+let g:netrw_browse_split = 2
+let g:vrfr_rg = 'true'
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
 
 " Set color scheme
 " ==========================================================================
@@ -121,6 +131,8 @@ call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
 
 call minpac#add('jpalardy/vim-slime', {'type': 'opt'})
 
+call minpac#add('neoclide/coc.nvim', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -163,11 +175,12 @@ packadd! vim-sort-motion
 
 packadd! vim-xkbswitch
 
-packadd! YouCompleteMe
+" packadd! YouCompleteMe
 packadd! vim-sandwich
 packadd! vim-highlightedyank
 
 packadd! vim-slime
+" packadd! coc.nvim
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
