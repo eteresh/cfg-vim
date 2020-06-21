@@ -7,6 +7,7 @@ autocmd! bufwritepost .vimrc source %
 set encoding=utf8 " Set utf8 as standard encoding and en_US as the standard language
 set fileformats=unix,dos,mac " Use Unix as the standard file type
 set number " Show line numbers
+set relativenumber
 set ruler " Show cursor position
 set cursorline " highlight current line
 set colorcolumn=120
@@ -58,7 +59,7 @@ set cmdheight=2
 
 set updatetime=50
 
-let g:netrw_browse_split = 2
+" let g:netrw_browse_split = 2
 let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
@@ -120,7 +121,7 @@ call minpac#add('vim-scripts/ReplaceWithRegister', {'type': 'opt'})
 call minpac#add('christoomey/vim-system-copy', {'type': 'opt'})
 call minpac#add('christoomey/vim-titlecase', {'type': 'opt'})
 call minpac#add('christoomey/vim-sort-motion', {'type': 'opt'})
-" call minpac#add('jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt'})
+call minpac#add('jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt'})
 
 call minpac#add('lyokha/vim-xkbswitch', {'type': 'opt'})
 
@@ -133,6 +134,10 @@ call minpac#add('jpalardy/vim-slime', {'type': 'opt'})
 
 call minpac#add('neoclide/coc.nvim', {'type': 'opt'})
 
+call minpac#add('easymotion/vim-easymotion', {'type': 'opt'})
+
+call minpac#add('yonchu/accelerated-smooth-scroll', {'type': 'opt'})
+ 
 " ==========================================================================
 
 " Add plugins
@@ -180,7 +185,13 @@ packadd! vim-sandwich
 packadd! vim-highlightedyank
 
 packadd! vim-slime
-" packadd! coc.nvim
+packadd! coc.nvim
+
+packadd! vim-easymotion
+
+packadd! accelerated-smooth-scroll
+
+packadd! vim-numbertoggle
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
