@@ -7,7 +7,7 @@ autocmd! bufwritepost .vimrc source %
 set encoding=utf8 " Set utf8 as standard encoding and en_US as the standard language
 set fileformats=unix,dos,mac " Use Unix as the standard file type
 set number " Show line numbers
-set relativenumber
+" set relativenumber
 set ruler " Show cursor position
 set cursorline " highlight current line
 set colorcolumn=120
@@ -132,12 +132,17 @@ call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
 
 call minpac#add('jpalardy/vim-slime', {'type': 'opt'})
 
-call minpac#add('neoclide/coc.nvim', {'type': 'opt'})
+call minpac#add('neoclide/coc.nvim', {'type': 'opt', 'branch': 'release'})
+
 
 call minpac#add('easymotion/vim-easymotion', {'type': 'opt'})
 
 call minpac#add('yonchu/accelerated-smooth-scroll', {'type': 'opt'})
- 
+
+call minpac#add('tpope/vim-obsession', {'type': 'opt'})
+
+call minpac#add('francoiscabrol/ranger.vim', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -192,10 +197,19 @@ packadd! vim-easymotion
 packadd! accelerated-smooth-scroll
 
 packadd! vim-numbertoggle
+
+packadd! vim-obsession
+
+packadd! ranger.vim
+
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
 let g:XkbSwitchEnabled=1
+
+let g:ranger_replace_netrw = 1
+
+let g:virtualenv_directory = '~/.venvs'
 
 " Mappings
 " ==========================================================================
@@ -209,3 +223,11 @@ nnoremap <Leader>a :A<CR>
 
 let g:highlightedyank_highlight_duration = 400
 let g:slime_target = "tmux"
+
+set statusline+=%{ObsessionStatus()}
+
+set norelativenumber
+
+nnoremap <Leader>r :Ranger<CR>
+
+let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'],}
