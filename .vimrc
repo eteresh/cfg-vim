@@ -115,6 +115,7 @@ call minpac#add('tpope/vim-projectionist', {'type': 'opt'})
 call minpac#add('tpope/vim-commentary', {'type': 'opt'})
 call minpac#add('tpope/vim-speeddating', {'type': 'opt'})
 
+call minpac#add('tpope/vim-rhubarb', {'type': 'opt'})
 
 call minpac#add('jez/vim-superman', {'type': 'opt'})
 call minpac#add('vim-scripts/ReplaceWithRegister', {'type': 'opt'})
@@ -176,7 +177,7 @@ packadd! vim-unimpaired
 packadd! vim-projectionist
 packadd! vim-commentary
 packadd! vim-speeddating
-
+packadd! vim-rhubarb
 packadd! vim-superman
 packadd! ReplaceWithRegister
 packadd! vim-system-copy
