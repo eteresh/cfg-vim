@@ -221,7 +221,7 @@ nnoremap <Leader>e :Explore<CR>
 " map go to alternate file
 nnoremap <Leader>a :A<CR>
 
-let g:highlightedyank_highlight_duration = 400
+let g:highlightedyank_highlight_duration = 300
 let g:slime_target = "tmux"
 
 set statusline+=%{ObsessionStatus()}
@@ -230,4 +230,14 @@ set norelativenumber
 
 nnoremap <Leader>r :Ranger<CR>
 
+
+nnoremap <Leader>ggs :GitGutterStageHunk<CR>
+nnoremap <Leader>ggn :GitGutterNextHunk<CR>
+nnoremap <Leader>ggp :GitGutterPrevHunk<CR>
+nnoremap <Leader>ggu :GitGutterUndoHunk<CR>
+
 let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'],}
+
+nnoremap <Leader>m :make<CR>
+nnoremap <Leader>w :write<CR>
+nnoremap <Leader>q :quit<CR>
