@@ -127,7 +127,6 @@ call minpac#add('jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt'})
 call minpac#add('lyokha/vim-xkbswitch', {'type': 'opt'})
 
 " call minpac#add('michaeljsmith/vim-indent-object', {'type': 'opt'})
-call minpac#add('ycm-core/YouCompleteMe', {'type': 'opt', 'do': {-> system('python install.py --all')}})
 call minpac#add('machakann/vim-sandwich', {'type': 'opt'})
 call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
 
@@ -143,6 +142,8 @@ call minpac#add('yonchu/accelerated-smooth-scroll', {'type': 'opt'})
 call minpac#add('tpope/vim-obsession', {'type': 'opt'})
 
 call minpac#add('francoiscabrol/ranger.vim', {'type': 'opt'})
+
+call minpac#add('unblevable/quick-scope', {'type': 'opt'})
 
 " ==========================================================================
 
@@ -186,7 +187,6 @@ packadd! vim-sort-motion
 
 packadd! vim-xkbswitch
 
-" packadd! YouCompleteMe
 packadd! vim-sandwich
 packadd! vim-highlightedyank
 
@@ -203,6 +203,8 @@ packadd! vim-obsession
 
 packadd! ranger.vim
 
+packadd! quick-scope
+
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
@@ -211,6 +213,8 @@ let g:XkbSwitchEnabled=1
 let g:ranger_replace_netrw = 1
 
 let g:virtualenv_directory = '~/.venvs'
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Mappings
 " ==========================================================================
