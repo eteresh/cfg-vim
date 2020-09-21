@@ -51,7 +51,7 @@ set wrap " wrap lines
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Enable spellchecking
-set spelllang=en_us
+set spelllang=ru_ru,en_us
 set spell
 
 " Give more space for displaying messages.
@@ -145,6 +145,8 @@ call minpac#add('francoiscabrol/ranger.vim', {'type': 'opt'})
 
 call minpac#add('unblevable/quick-scope', {'type': 'opt'})
 
+call minpac#add('tommcdo/vim-fugitive-blame-ext', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -204,6 +206,8 @@ packadd! vim-obsession
 packadd! ranger.vim
 
 packadd! quick-scope
+
+packadd! vim-fugitive-blame-ext
 
 " ==========================================================================
 
