@@ -11,7 +11,6 @@ set number " Show line numbers
 set ruler " Show cursor position
 set cursorline " highlight current line
 set colorcolumn=120
-set mouse=a
 set wildmenu
 set wildmode=full
 
@@ -147,6 +146,8 @@ call minpac#add('unblevable/quick-scope', {'type': 'opt'})
 
 call minpac#add('tommcdo/vim-fugitive-blame-ext', {'type': 'opt'})
 
+call minpac#add('dbeniamine/cheat.sh-vim', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -209,6 +210,7 @@ packadd! quick-scope
 
 packadd! vim-fugitive-blame-ext
 
+packadd! cheat.sh-vim
 " ==========================================================================
 
 let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
@@ -250,3 +252,21 @@ let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'],}
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>q :quit<CR>
+
+" syntax region htmlFold start="<\z(\<\(area\|base\|br\|col\|command\|embed\|hr\|img\|input\|keygen\|link\|meta\|para\|source\|track\|wbr\>\)\@![a-z-]\+\>\)\%(\_s*\_[^/]\?>\|\_s\_[^>]*\_[^>/]>\)" end="</\z1\_s*>" fold transparent keepend extend containedin=htmlHead,htmlH\d
+
+
+
+function! s:GoToDefinition()
+  if CocAction('jumpDefinition')
+    return v:true
+  endif
+
+  let ret = execute("silent! normal \<C-]>")
+  if ret =~ "Error"
+    call searchdecl(expand('<cword>'))
+  endif
+endfunction
+nmap <silent> <Leader>g :call <SID>GoToDefinition()<CR>
+
+" nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
