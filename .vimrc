@@ -270,3 +270,4 @@ endfunction
 nmap <silent> <Leader>g :call <SID>GoToDefinition()<CR>
 
 " nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
+let g:airline#extensions#tabline#enabled = 1
