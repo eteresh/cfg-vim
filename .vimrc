@@ -148,6 +148,7 @@ call minpac#add('tommcdo/vim-fugitive-blame-ext', {'type': 'opt'})
 
 call minpac#add('dbeniamine/cheat.sh-vim', {'type': 'opt'})
 
+call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
@@ -188,7 +189,7 @@ packadd! vim-system-copy
 packadd! vim-titlecase
 packadd! vim-sort-motion
 
-packadd! vim-xkbswitch
+" packadd! vim-xkbswitch
 
 packadd! vim-sandwich
 packadd! vim-highlightedyank
@@ -211,10 +212,13 @@ packadd! quick-scope
 packadd! vim-fugitive-blame-ext
 
 packadd! cheat.sh-vim
+
+
+packadd! delimitMate
 " ==========================================================================
 
-let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
-let g:XkbSwitchEnabled=1
+" let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
+" let g:XkbSwitchEnabled=1
 
 let g:ranger_replace_netrw = 1
 
@@ -271,3 +275,7 @@ nmap <silent> <Leader>g :call <SID>GoToDefinition()<CR>
 
 " nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
 let g:airline#extensions#tabline#enabled = 1
+
+tnoremap <C-\><C-\> <C-\><C-n>
+
+autocmd BufReadPost *.cpp,*.c set shiftwidth=2
