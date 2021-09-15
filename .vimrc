@@ -149,6 +149,9 @@ call minpac#add('tommcdo/vim-fugitive-blame-ext', {'type': 'opt'})
 call minpac#add('dbeniamine/cheat.sh-vim', {'type': 'opt'})
 
 call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
+
+call minpac#add('mhinz/vim-startify', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -173,10 +176,11 @@ packadd! fzf.vim
 
 packadd! syntax-vim-ex
 
-
 packadd! vim-virtualenv
 
 packadd! ale
+let g:ale_cpp_clangtidy_options = '-x c++'
+let g:ale_cpp_ccls_options = '-x c++-header'
 
 packadd! vim-unimpaired
 packadd! vim-projectionist
@@ -213,8 +217,9 @@ packadd! vim-fugitive-blame-ext
 
 packadd! cheat.sh-vim
 
-
 packadd! delimitMate
+
+packadd! vim-startify
 " ==========================================================================
 
 " let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
@@ -251,7 +256,7 @@ nnoremap <Leader>ggn :GitGutterNextHunk<CR>
 nnoremap <Leader>ggp :GitGutterPrevHunk<CR>
 nnoremap <Leader>ggu :GitGutterUndoHunk<CR>
 
-let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'],}
+let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'], 'cpp': ['ccls']}
 
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>w :write<CR>
@@ -271,11 +276,19 @@ function! s:GoToDefinition()
     call searchdecl(expand('<cword>'))
   endif
 endfunction
-nmap <silent> <Leader>g :call <SID>GoToDefinition()<CR>
+" nmap <silent> <Leader>d :call <SID>GoToDefinition()<CR>
+nmap <silent> <Leader>d <Plug>(coc-definition)
 
 " nnoremap <Leader>g :call CocActionAsync('jumpDefinition')<CR>
 let g:airline#extensions#tabline#enabled = 1
 
 tnoremap <C-\><C-\> <C-\><C-n>
 
-autocmd BufReadPost *.cpp,*.c set shiftwidth=2
+augroup cpp_style_guide
+      " Automatically delete trailing DOS-returns and whitespace on file open and
+      " write.
+    autocmd BufWritePre,FileWritePre *.cpp,*.c,*.h silent! %s/[\r \t]\+$//
+    autocmd BufReadPost *.cpp,*.c,*.h set shiftwidth=4
+augroup END
+
+noremap Y y$
