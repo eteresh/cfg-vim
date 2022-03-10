@@ -152,6 +152,9 @@ call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
 
 call minpac#add('mhinz/vim-startify', {'type': 'opt'})
 
+call minpac#add('preservim/tagbar', {'type': 'opt'})
+
+
 " ==========================================================================
 
 " Add plugins
@@ -220,6 +223,8 @@ packadd! cheat.sh-vim
 packadd! delimitMate
 
 packadd! vim-startify
+
+packadd! tagbar
 " ==========================================================================
 
 " let g:XkbSwitchLib="/usr/local/lib/libxkbswitch.so"
@@ -262,6 +267,7 @@ nnoremap <Leader>m :make<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>q :quit<CR>
 
+nnoremap <Leader>t :TagbarToggle<CR>
 " syntax region htmlFold start="<\z(\<\(area\|base\|br\|col\|command\|embed\|hr\|img\|input\|keygen\|link\|meta\|para\|source\|track\|wbr\>\)\@![a-z-]\+\>\)\%(\_s*\_[^/]\?>\|\_s\_[^>]*\_[^>/]>\)" end="</\z1\_s*>" fold transparent keepend extend containedin=htmlHead,htmlH\d
 
 
@@ -292,3 +298,5 @@ augroup cpp_style_guide
 augroup END
 
 noremap Y y$
+
+let g:syntastic_python_flake8_post_args="--max-line-length=120"
