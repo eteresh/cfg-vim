@@ -11,15 +11,7 @@
 git clone --bare https://github.com/eteresh/cfg-vim.git $HOME/.cfg/vim
 git --git-dir=$HOME/.cfg/vim --work-tree=$HOME checkout master
 git --git-dir=$HOME/.cfg/vim --work-tree=$HOME config --local status.showUntrackedFiles no
-
-mkdir -p $HOME/.vim/pack/minpac/opt
-cd $HOME/.vim/pack/minpac/opt
-git clone https://github.com/k-takata/minpac.git
-cd $HOME
-
-echo 'export PATH=$PATH:$HOME/.vim/pack/minpac/opt/fzf/bin' >> $HOME/.bashrc
-mkdir -p $HOME/.config/fish/config.fish
-echo 'set PATH $PATH $HOME/.vim/pack/minpac/opt/fzf/bin' $HOME/.config/fish/config.fish
+git clone https://github.com/k-takata/minpac.git $HOME/.config/nvim/pack/minpac/opt/minpac
 ```
 
 2. You need to add path to your system PATH-variable.
@@ -34,6 +26,31 @@ set PATH $PATH $HOME/.vim/pack/minpac/opt/fzf/bin
 3. Run vim, ignore all warnings (because no plugins downloaded), and execute:
 ```vim
 :PackUpdate
+```
+
+4. Conquer of Completion
+```vim
+CocCommand python.setInterpreter
+```
+`CocConfig`:
+```json
+{
+  "suggest.timeout": 5000,
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  }
+}
 ```
 
 

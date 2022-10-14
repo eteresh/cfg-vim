@@ -154,9 +154,10 @@ call minpac#add('airblade/vim-gitgutter', {'type': 'opt'})
 " https://blog.claude.nl/tech/howto/Setup-Neovim-as-Python-IDE-with-virtualenvs/
 " https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
 call minpac#add('neoclide/coc.nvim', {'type': 'opt', 'branch': 'release'})
-call minpac#add('neoclide/coc-python', {'type': 'opt'})
 call minpac#add('neoclide/coc-yaml', {'type': 'opt'})
 call minpac#add('neoclide/coc-json', {'type': 'opt'})
+" call minpac#add('neoclide/coc-python', {'type': 'opt'})
+" call minpac#add('pappasam/coc-jedi', {'type': 'opt'})
 
 call minpac#add('tpope/vim-obsession', {'type': 'opt'})
 call minpac#add('tpope/vim-unimpaired', {'type': 'opt'})
@@ -174,6 +175,9 @@ call minpac#add('tpope/vim-projectionist', {'type': 'opt'})
 call minpac#add('preservim/tagbar', {'type': 'opt'})
 
 call minpac#add('bfrg/vim-cpp-modern', {'type': 'opt'})
+
+call minpac#add('tpope/vim-dadbod', {'type': 'opt'})
+call minpac#add('kristijanhusak/vim-dadbod-ui', {'type': 'opt'})
 
 " ==========================================================================
 
@@ -198,9 +202,10 @@ packadd! vim-signify
 packadd! plenary.nvim
 
 packadd! coc.nvim
-packadd! coc-python
 packadd! coc-yaml
 packadd! coc-json
+" packadd! coc-python
+" packadd! coc-jedi
 packadd! vim-obsession
 packadd! vim-unimpaired
 packadd! vim-lsp-cxx-highlight
@@ -218,6 +223,27 @@ packadd! tagbar
 
 packadd! vim-cpp-modern
 
+" UI for databases
+packadd! vim-dadbod
+packadd! vim-dadbod-ui
+
 autocmd BufReadPost *.h,*.cpp,*.c,*.cc set shiftwidth=2
+autocmd BufReadPost *.js set shiftwidth=2
 
 set relativenumber
+let g:db_ui_auto_execute_table_helpers = 1
+
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>ei :edit $HOME/.config/nvim/init.vim<CR>
+
+nnoremap <Leader>ggs :GitGutterStageHunk<CR>
+nnoremap <Leader>ggn :GitGutterNextHunk<CR>
+nnoremap <Leader>ggp :GitGutterPrevHunk<CR>
+nnoremap <Leader>ggu :GitGutterUndoHunk<CR>
+
+let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'], 'cpp': ['ccls']}
+
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
