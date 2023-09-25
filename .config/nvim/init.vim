@@ -7,6 +7,7 @@ set colorcolumn=120
 set wildmenu
 set wildmode=full
 
+
 " Save 200 last Ex commands in history
 set history=200
 
@@ -80,6 +81,7 @@ set statusline+=%{ObsessionStatus()}
 set norelativenumber
 
 nnoremap <Leader>r :Ranger<CR>
+nnoremap <Leader>jp :%!jq .<CR>
 augroup cpp_style_guide
       " Automatically delete trailing DOS-returns and whitespace on file open and
       " write.
@@ -179,6 +181,10 @@ call minpac#add('bfrg/vim-cpp-modern', {'type': 'opt'})
 call minpac#add('tpope/vim-dadbod', {'type': 'opt'})
 call minpac#add('kristijanhusak/vim-dadbod-ui', {'type': 'opt'})
 
+
+" html
+call minpac#add('mattn/emmet-vim', {'type': 'opt'})
+
 " ==========================================================================
 
 " Add plugins
@@ -227,19 +233,30 @@ packadd! vim-cpp-modern
 packadd! vim-dadbod
 packadd! vim-dadbod-ui
 
+packadd! emmet-vim
+
 autocmd BufReadPost *.h,*.cpp,*.c,*.cc set shiftwidth=2
-autocmd BufReadPost *.js set shiftwidth=2
+autocmd BufReadPost *.js,*jsx,*.ts,*.tsx set shiftwidth=2
+autocmd BufReadPost *.html,*.css set shiftwidth=2
+autocmd BufNewFile,Bufread *.ddl set filetype=sql
 
 set relativenumber
 let g:db_ui_auto_execute_table_helpers = 1
 
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>ei :edit $HOME/.config/nvim/init.vim<CR>
+nnoremap <Leader>ef :edit $HOME/.config/fish/config.fish<CR>
 
 nnoremap <Leader>ggs :GitGutterStageHunk<CR>
 nnoremap <Leader>ggn :GitGutterNextHunk<CR>
 nnoremap <Leader>ggp :GitGutterPrevHunk<CR>
 nnoremap <Leader>ggu :GitGutterUndoHunk<CR>
+
+
+nnoremap <Leader>l :vertical res +5<CR>
+nnoremap <Leader>h :vertical res -5<CR>
+nnoremap <Leader>j :res +5<CR>
+nnoremap <Leader>k :res -5<CR>
 
 let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'], 'cpp': ['ccls']}
 
