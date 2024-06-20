@@ -49,10 +49,13 @@ CocCommand python.setInterpreter
         }
       }
     }
-  }
+  },
+  "pyright.enable": true,
+  "pyright.inlayHints.parameterTypes": false,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.functionReturnTypes": false
 }
 ```
-
 
 ## Clone vim-config repo
 ```shell

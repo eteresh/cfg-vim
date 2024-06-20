@@ -6,7 +6,7 @@ set cursorline " highlight current line
 set colorcolumn=120
 set wildmenu
 set wildmode=full
-
+set relativenumber
 
 " Save 200 last Ex commands in history
 set history=200
@@ -35,9 +35,20 @@ set list
 set expandtab " Use spaces instead of tabs
 set smarttab
 
+" set default indentation
 set shiftwidth=4 " 1 tab == 4 spaces
 set tabstop=4 " visible width of a tab
 set wrap " wrap lines
+
+" set indentation for files based on extention:
+autocmd BufReadPost *.h,*.cpp,*.c,*.cc set shiftwidth=2
+autocmd BufReadPost *.js,*jsx,*.ts,*.tsx set shiftwidth=2
+autocmd BufReadPost *.html,*.css set shiftwidth=2
+autocmd BufReadPost *.json set shiftwidth=2
+
+" set filetypes:
+autocmd BufNewFile,Bufread *.ddl set filetype=sql
+
 " ==========================================================================
 
 " Expand %% to directory of a current buffer
@@ -54,53 +65,40 @@ set updatetime=50
 
 " remapping keys
 noremap Y y$
+
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>q :quit<CR>
-
-nnoremap <Leader>t :TagbarToggle<CR>
-let g:airline#extensions#tabline#enabled = 1
+nnoremap <Leader>jp :%!jq .<CR>
 
 tnoremap <C-\><C-\> <C-\><C-n>
-
-nnoremap <Leader>f :<C-u>FZF<CR>
-nnoremap <Leader>b :<C-u>Buffers<CR>
 
 nnoremap <C-e> <C-e>j
 nnoremap <C-y> <C-y>k
 
-" map go to alternate file
-nnoremap <Leader>a :A<CR>
+" editing vim/fish configs
+nnoremap <Leader>ei :edit $HOME/.config/nvim/init.vim<CR>
+nnoremap <Leader>ef :edit $HOME/.config/fish/config.fish<CR>
 
-nmap <silent> <Leader>d <Plug>(coc-definition)
+" change window size in split mode
+nnoremap <Leader>l :vertical res +5<CR>
+nnoremap <Leader>h :vertical res -5<CR>
+nnoremap <Leader>j :res +5<CR>
+nnoremap <Leader>k :res -5<CR>
 
-let g:highlightedyank_highlight_duration = 300
-
-set statusline+=%{ObsessionStatus()}
-
-set norelativenumber
-
-nnoremap <Leader>r :Ranger<CR>
-nnoremap <Leader>jp :%!jq .<CR>
 augroup cpp_style_guide
       " Automatically delete trailing DOS-returns and whitespace on file open and
       " write.
     autocmd BufWritePre,FileWritePre *.cpp,*.c,*.h silent! %s/[\r \t]\+$//
-    autocmd BufReadPost *.cpp,*.c,*.h set shiftwidth=4
 augroup END
 
 " Set color scheme
-" ==========================================================================
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 set t_Co=256
 set background=dark
 colorscheme solarized8_flat
 
-" c++ syntax highlighting
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
 " ==========================================================================
 
 " Initialize minpac to load vim plugins
@@ -117,150 +115,216 @@ command! PackClean call minpac#clean()
 " Add minpac to track updates
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" Add plugin to search visually selected text in visual mode
-call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
 
-" Add colorscheme solarized8
+" BASE VIM PLUGINS:
+" colorscheme solarized8
 call minpac#add('lifepillar/vim-solarized8', {'type': 'opt'})
 
-call minpac#add('vim-airline/vim-airline', {'type': 'opt'})
+" fancy start screen
+call minpac#add('mhinz/vim-startify', {'type': 'opt'})
 
+" enabling/disabling tracking session (state)
+call minpac#add('tpope/vim-obsession', {'type': 'opt'})
+
+" bottom line with useful info
+call minpac#add('vim-airline/vim-airline', {'type': 'opt'})
+call minpac#add('vim-airline/vim-airline-themes', {'type': 'opt'})
+
+"lua library
+call minpac#add('nvim-lua/plenary.nvim', {'type': 'opt'})
+" ==========================================================================
+
+
+" WORKING WITH TEXT:
+" ==========================================================================
+" copy/insert text to system clipboard
+call minpac#add('christoomey/vim-system-copy', {'type': 'opt'})
+
+" commenting lines with gcc
+call minpac#add('tpope/vim-commentary', {'type': 'opt'})
+
+" incrementing/decrementing dates
+call minpac#add('tpope/vim-speeddating', {'type': 'opt'})
+
+" automatic closing quotes, parenthesis, brackets
+call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
+
+" working with brackets, quotes: replacing, deleting: `sr"'`, `sd[`
+call minpac#add('machakann/vim-sandwich', {'type': 'opt'})
+
+" highlight selected (yanked) text
+call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
+" ==========================================================================
+
+
+" TEXT NAVIGATION:
+" ==========================================================================
+" exact search visually selected text in visual mode
+call minpac#add('nelstrom/vim-visual-star-search', {'type': 'opt'})
+
+" scrolling through code with animation
+call minpac#add('yonchu/accelerated-smooth-scroll', {'type': 'opt'})
+
+" Navigation in line: always-on highlight for a unique character in every word on a line to help you use f{symbol}
+call minpac#add('unblevable/quick-scope', {'type': 'opt'})
+" ==========================================================================
+
+
+" NAVIGATING FILES:
+" ==========================================================================
+" ranger inside vim
+call minpac#add('francoiscabrol/ranger.vim', {'type': 'opt'})
+
+" fuzzy search
 call minpac#add('junegunn/fzf', {'type': 'opt', 'do': {-> system('./install --bin')}})
 call minpac#add('junegunn/fzf.vim', {'type': 'opt'})
 
-call minpac#add('christoomey/vim-system-copy', {'type': 'opt'})
+" navigating with `[`, `]` files in args `[a`, `]a`, buffers `[b`, html-tags `[x`, urls `[u`
+call minpac#add('tpope/vim-unimpaired', {'type': 'opt'})
 
-call minpac#add('tpope/vim-commentary', {'type': 'opt'})
-
-call minpac#add('machakann/vim-sandwich', {'type': 'opt'})
-
-call minpac#add('machakann/vim-highlightedyank', {'type': 'opt'})
-
-
+" closing buffer without exiting vim with <Leader>bd
 call minpac#add('rbgrouleff/bclose.vim', {'type': 'opt'})
-call minpac#add('francoiscabrol/ranger.vim', {'type': 'opt'})
 
-call minpac#add('yonchu/accelerated-smooth-scroll', {'type': 'opt'})
+" Jump between two corresponding files
+call minpac#add('tpope/vim-projectionist', {'type': 'opt'})
+" ==========================================================================
 
-call minpac#add('mhinz/vim-startify', {'type': 'opt'})
-call minpac#add('mhinz/vim-signify', {'type': 'opt'})
 
-call minpac#add('nvim-lua/plenary.nvim', {'type': 'opt'})
-
-" Add git plugins
+" GIT:
+" ==========================================================================
 call minpac#add('tpope/vim-fugitive', {'type': 'opt'})
 call minpac#add('tommcdo/vim-fugitive-blame-ext', {'type': 'opt'})
+" staging/unstaging chanks of code in a file
 call minpac#add('airblade/vim-gitgutter', {'type': 'opt'})
+" show added/deleted rows in left (sign) column with +/- signs:
+call minpac#add('mhinz/vim-signify', {'type': 'opt'})
+" ==========================================================================
 
+
+" CODE LANGUAGES:
+" ==========================================================================
 " Adding coc-plugin for cpp and python
 " https://blog.claude.nl/tech/howto/Setup-Neovim-as-Python-IDE-with-virtualenvs/
 " https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
 call minpac#add('neoclide/coc.nvim', {'type': 'opt', 'branch': 'release'})
 call minpac#add('neoclide/coc-yaml', {'type': 'opt'})
 call minpac#add('neoclide/coc-json', {'type': 'opt'})
-" call minpac#add('neoclide/coc-python', {'type': 'opt'})
+call minpac#add('fannheyward/coc-pyright', {'type': 'opt'})
 " call minpac#add('pappasam/coc-jedi', {'type': 'opt'})
 
-call minpac#add('tpope/vim-obsession', {'type': 'opt'})
-call minpac#add('tpope/vim-unimpaired', {'type': 'opt'})
-
+" C/C++/Cuda/ObjC semantic highlighting using the language server protocol:
 call minpac#add('jackguo380/vim-lsp-cxx-highlight', {'type': 'opt'})
-
-call minpac#add('unblevable/quick-scope', {'type': 'opt'})
-
-" Add closing brackets
-call minpac#add('Raimondi/delimitMate', {'type': 'opt'})
-
-" Jump between two corresponding files
-call minpac#add('tpope/vim-projectionist', {'type': 'opt'})
-
-call minpac#add('preservim/tagbar', {'type': 'opt'})
-
+" Enhanced C and C++ syntax highlighting:
 call minpac#add('bfrg/vim-cpp-modern', {'type': 'opt'})
 
-call minpac#add('tpope/vim-dadbod', {'type': 'opt'})
-call minpac#add('kristijanhusak/vim-dadbod-ui', {'type': 'opt'})
-
+" right bar with function definitions
+call minpac#add('preservim/tagbar', {'type': 'opt'})
 
 " html
 call minpac#add('mattn/emmet-vim', {'type': 'opt'})
 
+" linter
+call minpac#add('dense-analysis/ale', {'type': 'opt'})
+" ==========================================================================
+
+" DATABASES:
+" ==========================================================================
+call minpac#add('tpope/vim-dadbod', {'type': 'opt'})
+call minpac#add('kristijanhusak/vim-dadbod-ui', {'type': 'opt'})
+call minpac#add('kristijanhusak/vim-dadbod-completion', {'type': 'opt'})
 " ==========================================================================
 
 " Add plugins
 " ==========================================================================
-packadd! vim-visual-star-search
-packadd! vim-airline
 
-" Add plugins for fuzzy file search
+" BASE VIM PLUGINS:
+packadd! vim-startify
+packadd! vim-airline
+let g:airline#extensions#tabline#enabled = 1
+
+packadd! vim-obsession
+set statusline+=%{ObsessionStatus()}
+
+packadd! plenary.nvim
+" ==========================================================================
+
+" WORKING WITH TEXT:
+packadd! vim-system-copy
+packadd! vim-commentary
+packadd! vim-speeddating
+packadd! delimitMate
+packadd! vim-sandwich
+packadd! vim-highlightedyank
+let g:highlightedyank_highlight_duration = 300
+" ==========================================================================
+
+" TEXT NAVIGATION:
+packadd! vim-visual-star-search
+packadd! accelerated-smooth-scroll
+packadd! quick-scope
+" ==========================================================================
+
+" NAVIGATING FILES:
+packadd! ranger.vim
+nnoremap <Leader>r :Ranger<CR>
+
 packadd! fzf
 packadd! fzf.vim
+nnoremap <Leader>f :<C-u>FZF<CR>
+nnoremap <Leader>b :<C-u>Buffers<CR>
 
-packadd! vim-system-copy
-packadd! vim-sandwich
-packadd! vim-commentary
-packadd! vim-highlightedyank
-packadd! ranger.vim
-packadd! bclose.vim
-packadd! accelerated-smooth-scroll
-packadd! vim-startify
-packadd! vim-signify
-packadd! plenary.nvim
-
-packadd! coc.nvim
-packadd! coc-yaml
-packadd! coc-json
-" packadd! coc-python
-" packadd! coc-jedi
-packadd! vim-obsession
 packadd! vim-unimpaired
-packadd! vim-lsp-cxx-highlight
+packadd! bclose.vim
+packadd! vim-projectionist
+" map go to alternate file
+nnoremap <Leader>a :A<CR>
+" ==========================================================================
 
+" GIT:
 packadd! vim-fugitive
+nnoremap <Leader>gw :Gwrite<CR>
+
 packadd! vim-fugitive-blame-ext
 packadd! vim-gitgutter
-
-packadd! quick-scope
-packadd! delimitMate
-
-packadd! vim-projectionist
-
-packadd! tagbar
-
-packadd! vim-cpp-modern
-
-" UI for databases
-packadd! vim-dadbod
-packadd! vim-dadbod-ui
-
-packadd! emmet-vim
-
-autocmd BufReadPost *.h,*.cpp,*.c,*.cc set shiftwidth=2
-autocmd BufReadPost *.js,*jsx,*.ts,*.tsx set shiftwidth=2
-autocmd BufReadPost *.html,*.css set shiftwidth=2
-autocmd BufNewFile,Bufread *.ddl set filetype=sql
-
-set relativenumber
-let g:db_ui_auto_execute_table_helpers = 1
-
-nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>ei :edit $HOME/.config/nvim/init.vim<CR>
-nnoremap <Leader>ef :edit $HOME/.config/fish/config.fish<CR>
-
 nnoremap <Leader>ggs :GitGutterStageHunk<CR>
 nnoremap <Leader>ggn :GitGutterNextHunk<CR>
 nnoremap <Leader>ggp :GitGutterPrevHunk<CR>
 nnoremap <Leader>ggu :GitGutterUndoHunk<CR>
 
+packadd! vim-signify
+" ==========================================================================
 
-nnoremap <Leader>l :vertical res +5<CR>
-nnoremap <Leader>h :vertical res -5<CR>
-nnoremap <Leader>j :res +5<CR>
-nnoremap <Leader>k :res -5<CR>
-
-let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'], 'cpp': ['ccls']}
-
+" CODE LANGUAGES:
+" ==========================================================================
+packadd! coc.nvim
+packadd! coc-yaml
+packadd! coc-json
+packadd! coc-pyright
+" packadd! coc-jedi
+nmap <silent> <Leader>d <Plug>(coc-definition)
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+packadd! vim-lsp-cxx-highlight
+packadd! vim-cpp-modern
+let g:cpp_function_highlight = 1
+let g:cpp_attributes_highlight = 1
+let g:cpp_member_highlight = 1
+let g:cpp_simple_highlight = 1
+
+packadd! tagbar
+nnoremap <Leader>t :TagbarToggle<CR>
+
+packadd! emmet-vim
+packadd! ale
+let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake8'], 'cpp': ['ccls']}
+" ==========================================================================
+
+" DATABASES:
+packadd! vim-dadbod
+packadd! vim-dadbod-ui
+let g:db_ui_auto_execute_table_helpers = 1
+packadd! vim-dadbod-completion
+" ==========================================================================
