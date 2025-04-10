@@ -38,7 +38,7 @@ opt.syntax = 'on'
 
 -- Tab and indent settings
 -- ==========================================================================
-opt.listchars = { tab = '>~', trail = '-'} -- , eol = '¬' }
+opt.listchars = { tab = '>~', trail = '-', eol = '¬' }
 opt.list = true
 
 opt.expandtab = true -- Use spaces instead of tabs
