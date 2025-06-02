@@ -1,7 +1,8 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
   },
   config = function()
     -- import mason
@@ -22,18 +23,20 @@ return {
     })
 
     mason_lspconfig.setup({
+      automatic_enable = true,
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
+        "pyright",
+        "clangd",
+        "lua_ls",
         "html",
         "cssls",
         "tailwindcss",
         "svelte",
-        "lua_ls",
+        "vimls",
         "graphql",
         "emmet_ls",
         "prismals",
-        "pyright",
       },
     })
   end,
