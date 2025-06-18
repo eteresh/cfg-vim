@@ -1,3 +1,4 @@
+-- отображает меню с подсказками по сочетаниям клавиш
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",

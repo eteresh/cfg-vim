@@ -5,7 +5,7 @@ return {
   'christoomey/vim-system-copy',
 
   -- commenting lines with gcc:
-  'tpope/vim-commentary',
+  -- 'tpope/vim-commentary',
 
   -- incrementing/decrementing dates:
   'tpope/vim-speeddating',

@@ -4,6 +4,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer", -- source for text in buffer
     "hrsh7th/cmp-path", -- source for file system paths
+    "hrsh7th/cmp-emoji",
     {
       "L3MON4D3/LuaSnip",
       -- follow latest release.
@@ -29,10 +30,16 @@ return {
       completion = {
         completeopt = "menu,menuone,preview,noselect",
       },
+
       snippet = { -- configure how nvim-cmp interacts with snippet engine
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered()
       },
 
       mapping = cmp.mapping.preset.insert({
@@ -56,7 +63,9 @@ return {
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         format = lspkind.cmp_format({
-          maxwidth = 50,
+          mode = "symbol_text",
+          maxwidth = 70,
+          show_labelDetails = true,
           ellipsis_char = "...",
         }),
       },
