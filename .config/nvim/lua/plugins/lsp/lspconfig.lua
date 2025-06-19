@@ -4,9 +4,6 @@ return {
     "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -61,6 +58,9 @@ return {
 
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+        opts.desc = "List LSP servers"
+        keymap.set("n", "<leader>ls", ":LspInfo<CR>", opts)
       end,
     })
 
@@ -91,23 +91,20 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- pacman -S pyright
-    lspconfig["pyright"].setup({
-      capabilities = capabilities,
-    })
+    vim.lsp.enable('pyright')
+    vim.lsp.config('pyright', {capabilities = capabilities})
 
     -- pacman -S clang
-    lspconfig["clangd"].setup({
-      capabilities = capabilities,
-    })
+    vim.lsp.enable('clangd')
+    vim.lsp.config('clangd', {capabilities = capabilities})
 
     -- yay -S nodejs-emmet-ls
-    lspconfig["emmet_ls"].setup({
-      capabilities = capabilities,
-      filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
+    vim.lsp.enable('emmet_ls')
+    vim.lsp.config('emmet_ls', {capabilities = capabilities})
 
     -- pacman -S lua-language-server
-    lspconfig["lua_ls"].setup({
+    vim.lsp.enable('lua_ls')
+    vim.lsp.config('lua_ls', {
       capabilities = capabilities,
       settings = {
         Lua = {
