@@ -6,7 +6,7 @@ return {
     {"nvim-treesitter/nvim-treesitter-textobjects"}, -- Syntax aware text-objects
     {
         "nvim-treesitter/nvim-treesitter-context", -- Show code context
-        opts = {enable = true, mode = "topline", line_numbers = true}
+        opts = {enable = true, mode = "topline", max_lines = 4, line_numbers = true}
     },
     { "windwp/nvim-ts-autotag" },
   },
