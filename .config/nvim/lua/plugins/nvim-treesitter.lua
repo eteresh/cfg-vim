@@ -25,14 +25,6 @@ return {
       autotag = {
         enable = true,
       },
-      -- ensure these language parsers are installed
-      ensure_installed = {
-        "proto", "json", "yaml", "bash", "fish", "tmux", "gitignore", "dockerfile", "markdown", "markdown_inline",
-        "ssh_config", "vim", "vimdoc", "regex", "make", "cmake", "lua", "c", "cpp", "cuda", "python", "query", "sql",
-        "go", "gomod", "gosum", "gowork", "java", "scala", "kotlin", "ruby", "javascript", "typescript", "tsx",
-        "http", "html", "css", "rust",
-      },
-
       textobjects = {
         select = {
           enable = true,
@@ -71,6 +63,13 @@ return {
       --     node_decremental = "<bs>",
       --   },
       -- },
+    })
+
+    require("nvim-treesitter").install({
+        "proto", "json", "yaml", "bash", "fish", "gitignore", "dockerfile", "markdown", "markdown_inline",
+        "ssh_config", "vim", "vimdoc", "regex", "make", "cmake", "lua", "c", "cpp", "cuda", "python", "query", "sql",
+        "go", "gomod", "gosum", "gowork", "java", "scala", "kotlin", "ruby", "javascript", "typescript", "tsx",
+        "http", "html", "css", "rust",
     })
   end,
 }

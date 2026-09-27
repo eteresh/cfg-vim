@@ -20,6 +20,9 @@ return {
           map("n", "<Leader>ji", "<cmd>Neopyter execute notebook:run-cell-and-insert-below<cr>", "run selected and insert below")
           map("n", "<Leader>jr", "<cmd>Neopyter execute notebook:run-all<cr>", "run all above cell")
 
+          map("n", "<Leader>jO", "<cmd>Neopyter execute notebook:insert-cell-above<cr>", "insert-cell-above")
+          map("n", "<Leader>jo", "<cmd>Neopyter execute notebook:insert-cell-below<cr>", "insert-cell-below")
+
           map("n", "<Leader>jh", "<cmd>Neopyter execute notebook:hide-cell-code<cr>", "collapse cell code")
           map("n", "<Leader>jH", "<cmd>Neopyter execute notebook:hide-all-cell-code<cr>", "collapse all code")
 
@@ -28,8 +31,8 @@ return {
 
           map("n", "<Leader>jj", "<cmd>Neopyter command 127.0.0.1:9001<cr>", "Neopyter connect")
 
-          map("n", "<Leader>j0", "<cmd>Neopyter execute kernelmenu:restart<cr>", "restart kernel")
-          map("n", "<Leader>j9", "<cmd>Neopyter execute kernelmenu:restart-and-clear<cr>", "restart kernel and clear all cells")
+          map("n", "<Leader>j0", "<cmd>Neopyter execute kernelmenu:restart-and-clear<cr>", "restart kernel and clear all cells")
+          map("n", "<Leader>j1", "<cmd>Neopyter execute kernelmenu:restart<cr>", "restart kernel")
           map("n", "<Leader>j8", "<cmd>Neopyter execute kernelmenu:restart-run-all<cr>", "restart kernel and run all cells")
       end,
     },
